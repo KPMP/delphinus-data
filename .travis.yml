@@ -1,0 +1,16 @@
+language: java
+
+jdk:
+  - oraclejdk8
+
+install: true
+
+script:
+  - ./gradlew build 
+
+notifications:
+  email:
+    - rlreamy@umich.edu
+    - zwright@umich.edu
+    - cgates@umich.edu
+    - rossmith@umich.edu
