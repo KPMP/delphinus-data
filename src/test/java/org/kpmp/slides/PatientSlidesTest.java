@@ -32,6 +32,13 @@ public class PatientSlidesTest extends PatientSlides {
 	}
 
 	@Test
+	public void testSetLabel() {
+		patient.setLabel("r5t3 (Pilot 1)");
+
+		assertEquals("r5t3 (Pilot 1)", patient.getLabel());
+	}
+
+	@Test
 	public void testSetSlides() {
 		List<Slide> slides = Arrays.asList(mock(Slide.class), mock(Slide.class));
 

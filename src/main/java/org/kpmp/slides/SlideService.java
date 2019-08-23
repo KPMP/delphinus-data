@@ -23,4 +23,12 @@ public class SlideService {
 		}
 		return Collections.emptyList();
 	}
+
+	public List<PatientSlides> getAllPatientSlides() {
+		List<PatientSlides> patientSlides = patientRepo.findByOrderByKpmpIdAsc();
+		if (patientSlides != null) {
+			return patientSlides;
+		}
+		return Collections.emptyList();
+	}
 }

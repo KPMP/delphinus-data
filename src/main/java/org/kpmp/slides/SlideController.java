@@ -24,4 +24,9 @@ public class SlideController {
 		return slideService.getSlidesForPatient(kpmpId);
 	}
 
+	@RequestMapping(value = "/v1/slides", method = RequestMethod.GET)
+	public @ResponseBody List<PatientSlides> getAllPatientSlides() {
+		return slideService.getAllPatientSlides();
+	}
+
 }

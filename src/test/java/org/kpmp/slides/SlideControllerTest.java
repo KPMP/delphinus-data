@@ -40,4 +40,13 @@ public class SlideControllerTest {
 		assertEquals(slides, result);
 	}
 
+	@Test
+	public void testGetAllSlides() {
+		List<PatientSlides> slides = Arrays.asList(mock(PatientSlides.class));
+		when(slideService.getAllPatientSlides()).thenReturn(slides);
+
+		List<PatientSlides> result = controller.getAllPatientSlides();
+		assertEquals(slides, result);
+	}
+
 }

@@ -52,4 +52,19 @@ public class SlideServiceTest {
 		assertEquals(Collections.emptyList(), result);
 	}
 
+	@Test
+	public void testGetAllPatientSlides() {
+		List<PatientSlides> patientSlidesList = Arrays.asList(mock(PatientSlides.class));
+		when(patientRepo.findByOrderByKpmpIdAsc()).thenReturn(patientSlidesList);
+		List<PatientSlides> result = service.getAllPatientSlides();
+		assertEquals(patientSlidesList, result);
+	}
+
+	@Test
+	public void testGetAllPatientSlides_noResults() {
+		when(patientRepo.findByOrderByKpmpIdAsc()).thenReturn(null);
+		List<PatientSlides> result = service.getAllPatientSlides();
+		assertEquals(Collections.emptyList(), result);
+	}
+
 }
