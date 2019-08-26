@@ -12,39 +12,39 @@ import org.junit.Test;
 
 public class ParticipantTest extends Participant {
 
-	private Participant patient;
+	private Participant participant;
 
 	@Before
 	public void setUp() throws Exception {
-		patient = new Participant();
+		participant = new Participant();
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		patient = null;
+		participant = null;
 	}
 
 	@Test
 	public void testSetKpmpId() {
-		patient.setKpmpId("r5t3");
+		participant.setKpmpId("r5t3");
 
-		assertEquals("r5t3", patient.getKpmpId());
+		assertEquals("r5t3", participant.getKpmpId());
 	}
 
 	@Test
 	public void testSetLabel() {
-		patient.setLabel("r5t3 (Pilot 1)");
+		participant.setLabel("r5t3 (Pilot 1)");
 
-		assertEquals("r5t3 (Pilot 1)", patient.getLabel());
+		assertEquals("r5t3 (Pilot 1)", participant.getLabel());
 	}
 
 	@Test
 	public void testSetSlides() {
 		List<Slide> slides = Arrays.asList(mock(Slide.class), mock(Slide.class));
 
-		patient.setSlides(slides);
+		participant.setSlides(slides);
 
-		assertEquals(slides, patient.getSlides());
+		assertEquals(slides, participant.getSlides());
 	}
 
 }

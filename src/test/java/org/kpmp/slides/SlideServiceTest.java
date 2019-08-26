@@ -32,11 +32,11 @@ public class SlideServiceTest {
 	}
 
 	@Test
-	public void testGetSlidesForPatient() {
-		Participant patient = mock(Participant.class);
+	public void testGetSlidesForParticipant() {
+		Participant participant = mock(Participant.class);
 		List<Slide> slides = Arrays.asList(mock(Slide.class));
-		when(patient.getSlides()).thenReturn(slides);
-		when(participantRepository.findByKpmpId("345")).thenReturn(patient);
+		when(participant.getSlides()).thenReturn(slides);
+		when(participantRepository.findByKpmpId("345")).thenReturn(participant);
 
 		List<Slide> result = service.getSlidesForParticipant("345");
 
@@ -44,7 +44,7 @@ public class SlideServiceTest {
 	}
 
 	@Test
-	public void testGetSlidesForPatient_whenNoSlides() {
+	public void testGetSlidesForParticipant_whenNoSlides() {
 		when(participantRepository.findByKpmpId("345")).thenReturn(null);
 
 		List<Slide> result = service.getSlidesForParticipant("345");
@@ -53,15 +53,15 @@ public class SlideServiceTest {
 	}
 
 	@Test
-	public void testGetAllPatientSlides() {
-		List<Participant> patientSlidesList = Arrays.asList(mock(Participant.class));
-		when(participantRepository.findByOrderByKpmpIdAsc()).thenReturn(patientSlidesList);
+	public void testGetAllParticipantSlides() {
+		List<Participant> participantSlidesList = Arrays.asList(mock(Participant.class));
+		when(participantRepository.findByOrderByKpmpIdAsc()).thenReturn(participantSlidesList);
 		List<Participant> result = service.getAllParticipants();
-		assertEquals(patientSlidesList, result);
+		assertEquals(participantSlidesList, result);
 	}
 
 	@Test
-	public void testGetAllPatientSlides_noResults() {
+	public void testGetAllParticipantSlides_noResults() {
 		when(participantRepository.findByOrderByKpmpIdAsc()).thenReturn(null);
 		List<Participant> result = service.getAllParticipants();
 		assertEquals(Collections.emptyList(), result);

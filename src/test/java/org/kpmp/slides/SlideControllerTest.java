@@ -31,7 +31,7 @@ public class SlideControllerTest {
 	}
 
 	@Test
-	public void testGetSlidesForPatient() {
+	public void testGetSlidesForParticipant() {
 		List<Slide> slides = Arrays.asList(mock(Slide.class));
 		when(slideService.getSlidesForParticipant("444")).thenReturn(slides);
 
