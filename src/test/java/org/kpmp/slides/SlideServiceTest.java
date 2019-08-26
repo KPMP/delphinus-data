@@ -17,13 +17,13 @@ import org.mockito.MockitoAnnotations;
 public class SlideServiceTest {
 
 	@Mock
-	private PatientSlidesRepository patientRepo;
+	private ParticipantRepository participantRepository;
 	private SlideService service;
 
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
-		service = new SlideService(patientRepo);
+		service = new SlideService(participantRepository);
 	}
 
 	@After
@@ -33,37 +33,37 @@ public class SlideServiceTest {
 
 	@Test
 	public void testGetSlidesForPatient() {
-		PatientSlides patient = mock(PatientSlides.class);
+		Participant patient = mock(Participant.class);
 		List<Slide> slides = Arrays.asList(mock(Slide.class));
 		when(patient.getSlides()).thenReturn(slides);
-		when(patientRepo.findByKpmpId("345")).thenReturn(patient);
+		when(participantRepository.findByKpmpId("345")).thenReturn(patient);
 
-		List<Slide> result = service.getSlidesForPatient("345");
+		List<Slide> result = service.getSlidesForParticipant("345");
 
 		assertEquals(slides, result);
 	}
 
 	@Test
 	public void testGetSlidesForPatient_whenNoSlides() {
-		when(patientRepo.findByKpmpId("345")).thenReturn(null);
+		when(participantRepository.findByKpmpId("345")).thenReturn(null);
 
-		List<Slide> result = service.getSlidesForPatient("345");
+		List<Slide> result = service.getSlidesForParticipant("345");
 
 		assertEquals(Collections.emptyList(), result);
 	}
 
 	@Test
 	public void testGetAllPatientSlides() {
-		List<PatientSlides> patientSlidesList = Arrays.asList(mock(PatientSlides.class));
-		when(patientRepo.findByOrderByKpmpIdAsc()).thenReturn(patientSlidesList);
-		List<PatientSlides> result = service.getAllPatientSlides();
+		List<Participant> patientSlidesList = Arrays.asList(mock(Participant.class));
+		when(participantRepository.findByOrderByKpmpIdAsc()).thenReturn(patientSlidesList);
+		List<Participant> result = service.getAllParticipants();
 		assertEquals(patientSlidesList, result);
 	}
 
 	@Test
 	public void testGetAllPatientSlides_noResults() {
-		when(patientRepo.findByOrderByKpmpIdAsc()).thenReturn(null);
-		List<PatientSlides> result = service.getAllPatientSlides();
+		when(participantRepository.findByOrderByKpmpIdAsc()).thenReturn(null);
+		List<Participant> result = service.getAllParticipants();
 		assertEquals(Collections.emptyList(), result);
 	}
 

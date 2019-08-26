@@ -9,25 +9,25 @@ import org.springframework.stereotype.Service;
 @Service
 public class SlideService {
 
-	private PatientSlidesRepository patientRepo;
+	private ParticipantRepository participantRepository;
 
 	@Autowired
-	public SlideService(PatientSlidesRepository patientRepo) {
-		this.patientRepo = patientRepo;
+	public SlideService(ParticipantRepository participantRepository) {
+		this.participantRepository = participantRepository;
 	}
 
-	public List<Slide> getSlidesForPatient(String kpmpId) {
-		PatientSlides patient = patientRepo.findByKpmpId(kpmpId);
-		if (patient != null) {
-			return patient.getSlides();
+	public List<Slide> getSlidesForParticipant(String kpmpId) {
+		Participant participant = participantRepository.findByKpmpId(kpmpId);
+		if (participant != null) {
+			return participant.getSlides();
 		}
 		return Collections.emptyList();
 	}
 
-	public List<PatientSlides> getAllPatientSlides() {
-		List<PatientSlides> patientSlides = patientRepo.findByOrderByKpmpIdAsc();
-		if (patientSlides != null) {
-			return patientSlides;
+	public List<Participant> getAllParticipants() {
+		List<Participant> participants = participantRepository.findByOrderByKpmpIdAsc();
+		if (participants != null) {
+			return participants;
 		}
 		return Collections.emptyList();
 	}

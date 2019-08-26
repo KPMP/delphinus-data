@@ -10,13 +10,13 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class PatientSlidesTest extends PatientSlides {
+public class ParticipantTest extends Participant {
 
-	private PatientSlides patient;
+	private Participant patient;
 
 	@Before
 	public void setUp() throws Exception {
-		patient = new PatientSlides();
+		patient = new Participant();
 	}
 
 	@After

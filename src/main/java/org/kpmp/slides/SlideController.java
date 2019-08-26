@@ -20,13 +20,13 @@ public class SlideController {
 	}
 
 	@RequestMapping(value = "/v1/slides/{kpmpId}", method = RequestMethod.GET)
-	public @ResponseBody List<Slide> getSlidesForPatient(@PathVariable String kpmpId) {
-		return slideService.getSlidesForPatient(kpmpId);
+	public @ResponseBody List<Slide> getSlidesForParticipant(@PathVariable String kpmpId) {
+		return slideService.getSlidesForParticipant(kpmpId);
 	}
 
 	@RequestMapping(value = "/v1/slides", method = RequestMethod.GET)
-	public @ResponseBody List<PatientSlides> getAllPatientSlides() {
-		return slideService.getAllPatientSlides();
+	public @ResponseBody List<Participant> getAllParticipants() {
+		return slideService.getAllParticipants();
 	}
 
 }

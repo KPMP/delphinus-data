@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Document(collection = "patients")
-public class PatientSlides {
+public class Participant {
 
 	@Field("kpmp_id")
 	private String kpmpId;
