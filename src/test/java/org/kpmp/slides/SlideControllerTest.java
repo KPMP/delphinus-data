@@ -31,12 +31,21 @@ public class SlideControllerTest {
 	}
 
 	@Test
-	public void testGetSlidesForPatient() {
+	public void testGetSlidesForParticipant() {
 		List<Slide> slides = Arrays.asList(mock(Slide.class));
-		when(slideService.getSlidesForPatient("444")).thenReturn(slides);
+		when(slideService.getSlidesForParticipant("444")).thenReturn(slides);
 
-		List<Slide> result = controller.getSlidesForPatient("444");
+		List<Slide> result = controller.getSlidesForParticipant("444");
 
+		assertEquals(slides, result);
+	}
+
+	@Test
+	public void testGetAllSlides() {
+		List<Participant> slides = Arrays.asList(mock(Participant.class));
+		when(slideService.getAllParticipants()).thenReturn(slides);
+
+		List<Participant> result = controller.getAllParticipants();
 		assertEquals(slides, result);
 	}
 
