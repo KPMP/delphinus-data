@@ -1,16 +1,18 @@
 package org.kpmp.slides;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Document(collection = "patients")
-public class PatientSlides {
+public class Participant {
 
 	@Field("kpmp_id")
 	private String kpmpId;
+	@Field("label")
+	private String label;
 	@Field("slides")
 	List<Slide> slides = new ArrayList<>();
 
@@ -30,4 +32,11 @@ public class PatientSlides {
 		this.slides = slides;
 	}
 
+	public String getLabel() {
+		return label;
+	}
+
+	public void setLabel(String label) {
+		this.label = label;
+	}
 }
