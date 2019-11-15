@@ -2,6 +2,7 @@ package org.kpmp.slides;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
@@ -41,7 +42,7 @@ public class SlideControllerTest {
 		when(slideService.getSlidesForParticipant("444")).thenReturn(slides);
 		HttpServletRequest request = mock(HttpServletRequest.class);
 		List<Slide> result = controller.getSlidesForParticipant("444", request);
-
+		verify(loggingService).logInfoMessage(controller.getClass(), "Getting slides for participant 444", request);
 		assertEquals(slides, result);
 	}
 
@@ -51,6 +52,7 @@ public class SlideControllerTest {
 		when(slideService.getAllParticipants()).thenReturn(slides);
 		HttpServletRequest request = mock(HttpServletRequest.class);
 		List<Participant> result = controller.getAllParticipants(request);
+		verify(loggingService).logInfoMessage(controller.getClass(), "Getting all participants", request);
 		assertEquals(slides, result);
 	}
 
