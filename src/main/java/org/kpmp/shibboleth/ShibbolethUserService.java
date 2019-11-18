@@ -17,6 +17,12 @@ public class ShibbolethUserService {
 
 	public ShibbolethUser getUser(HttpServletRequest request) {
 
+		ShibbolethUser user = new ShibbolethUser();
+
+		if(request == null) {
+			return null;
+		}
+
 		String value = handleNull(request.getHeader("mail"));
 		String email = encoder.convertFromLatin1(value);
 		value = handleNull(request.getHeader("displayname"));
@@ -28,7 +34,6 @@ public class ShibbolethUserService {
 		value = handleNull(request.getHeader("eppn"));
 		String shibId = encoder.convertFromLatin1(value);
 
-		ShibbolethUser user = new ShibbolethUser();
 		user.setDisplayName(displayName);
 		user.setLastName(lastName);
 		user.setFirstName(firstName);
