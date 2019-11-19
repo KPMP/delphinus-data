@@ -1,7 +1,5 @@
 package org.kpmp.shibboleth;
 
-import java.io.UnsupportedEncodingException;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +15,13 @@ public class ShibbolethUserService {
 		this.encoder = encoder;
 	}
 
-	public ShibbolethUser getUser(HttpServletRequest request) throws UnsupportedEncodingException {
+	public ShibbolethUser getUser(HttpServletRequest request) {
+
+		ShibbolethUser user = new ShibbolethUser();
+
+		if(request == null) {
+			return null;
+		}
 
 		String value = handleNull(request.getHeader("mail"));
 		String email = encoder.convertFromLatin1(value);
@@ -30,7 +34,6 @@ public class ShibbolethUserService {
 		value = handleNull(request.getHeader("eppn"));
 		String shibId = encoder.convertFromLatin1(value);
 
-		ShibbolethUser user = new ShibbolethUser();
 		user.setDisplayName(displayName);
 		user.setLastName(lastName);
 		user.setFirstName(firstName);
