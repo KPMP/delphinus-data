@@ -39,10 +39,11 @@ processResources {
 }
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-data-mongodb")
     compile("org.springframework.boot:spring-boot-starter-web")
+	compile("org.springframework.boot:spring-boot-starter-data-mongodb")
 	testCompile("org.mockito:mockito-core")
-	testCompile("org.springframework.boot:spring-boot-starter-test")
+	testCompile("org.springframework.boot:spring-boot-starter-test")    
+    compile("org.json:json:20190722")
 }
 
 springBoot {
