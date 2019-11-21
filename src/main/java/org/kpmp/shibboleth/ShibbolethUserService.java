@@ -4,7 +4,8 @@ import java.util.Enumeration;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.kpmp.logging.LoggingService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,12 +13,11 @@ import org.springframework.stereotype.Service;
 public class ShibbolethUserService {
 
 	private UTF8Encoder encoder;
-	private LoggingService logger;
+	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
-	public ShibbolethUserService(UTF8Encoder encoder, LoggingService logger) {
+	public ShibbolethUserService(UTF8Encoder encoder) {
 		this.encoder = encoder;
-		this.logger = logger;
 	}
 
 	public ShibbolethUser getUser(HttpServletRequest request) {
@@ -31,7 +31,7 @@ public class ShibbolethUserService {
 		Enumeration<String> headerNames = request.getHeaderNames();
 		while (headerNames.hasMoreElements()) {
 			String header = headerNames.nextElement();
-			logger.logInfoMessage(this.getClass(), header + ": " + request.getIntHeader(header), request);
+			log.info(header + ": " + request.getIntHeader(header));
 		}
 
 		String value = handleNull(request.getHeader("mail"));
