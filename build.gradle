@@ -22,7 +22,7 @@ apply plugin: 'com.palantir.docker'
 
 jar {
     baseName = 'delphinus-data'
-    version =  '1.1'
+    version =  '1.2'
 }
 
 repositories {
