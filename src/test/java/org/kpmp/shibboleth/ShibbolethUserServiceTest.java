@@ -5,12 +5,14 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.io.UnsupportedEncodingException;
+import java.util.Enumeration;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.kpmp.logging.LoggingService;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -19,11 +21,13 @@ public class ShibbolethUserServiceTest {
 	private ShibbolethUserService shibbolethUserService;
 	@Mock
 	private UTF8Encoder utf8Encoder;
+	@Mock
+	private LoggingService logger;
 
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
-		shibbolethUserService = new ShibbolethUserService(utf8Encoder);
+		shibbolethUserService = new ShibbolethUserService(utf8Encoder, logger);
 	}
 
 	@After
@@ -31,9 +35,11 @@ public class ShibbolethUserServiceTest {
 		shibbolethUserService = null;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Test
 	public void testGetUser() throws UnsupportedEncodingException {
 		HttpServletRequest request = mock(HttpServletRequest.class);
+		when(request.getHeaderNames()).thenReturn(mock(Enumeration.class));
 		when(request.getHeader("mail")).thenReturn("maninblack@jcash.com");
 		when(request.getHeader("givenname")).thenReturn("Johnny");
 		when(request.getHeader("sn")).thenReturn("Cash");

@@ -1,7 +1,10 @@
 package org.kpmp.shibboleth;
 
+import java.util.Enumeration;
+
 import javax.servlet.http.HttpServletRequest;
 
+import org.kpmp.logging.LoggingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,18 +12,26 @@ import org.springframework.stereotype.Service;
 public class ShibbolethUserService {
 
 	private UTF8Encoder encoder;
+	private LoggingService logger;
 
 	@Autowired
-	public ShibbolethUserService(UTF8Encoder encoder) {
+	public ShibbolethUserService(UTF8Encoder encoder, LoggingService logger) {
 		this.encoder = encoder;
+		this.logger = logger;
 	}
 
 	public ShibbolethUser getUser(HttpServletRequest request) {
 
 		ShibbolethUser user = new ShibbolethUser();
 
-		if(request == null) {
+		if (request == null) {
 			return null;
+		}
+
+		Enumeration<String> headerNames = request.getHeaderNames();
+		while (headerNames.hasMoreElements()) {
+			String header = headerNames.nextElement();
+			logger.logInfoMessage(this.getClass(), header + ": " + request.getIntHeader(header), request);
 		}
 
 		String value = handleNull(request.getHeader("mail"));
