@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.kpmp.logging.LoggingService;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -21,13 +20,11 @@ public class ShibbolethUserServiceTest {
 	private ShibbolethUserService shibbolethUserService;
 	@Mock
 	private UTF8Encoder utf8Encoder;
-	@Mock
-	private LoggingService logger;
 
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
-		shibbolethUserService = new ShibbolethUserService(utf8Encoder, logger);
+		shibbolethUserService = new ShibbolethUserService(utf8Encoder);
 	}
 
 	@After

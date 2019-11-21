@@ -31,7 +31,7 @@ public class ShibbolethUserService {
 		Enumeration<String> headerNames = request.getHeaderNames();
 		while (headerNames.hasMoreElements()) {
 			String header = headerNames.nextElement();
-			log.info(header + ": " + request.getIntHeader(header));
+			log.info(header + ": " + request.getHeader(header));
 		}
 
 		String value = handleNull(request.getHeader("mail"));
