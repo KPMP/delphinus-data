@@ -1,0 +1,32 @@
+{
+  "_id": {
+    "$oid": "5c05744a0056482794321e5c"
+  },
+  "type": "he",
+  "title": "Hematoxylin &amp; Eosin (H&amp;E) Stain",
+  "description": "<p>A hematoxylin &amp; eosin (H&E) <a href=\"https://en.wikipedia.org/wiki/Staining\" target=\"_blank\">stain</a> was applied to this biopsy slide. The H&amp;E stain is a good general stain for studying the overall structure of the kidney, especially cells from the <a href =\"https://en.wikipedia.org/wiki/Nephron#Renal_tubule\" target=\"_blank\">renal tubule</a>. It is typically the first stain a pathologist will review.</p>"
+}
+{
+  "_id": {
+    "$oid": "5c05744a0056482794321e5d"
+  },
+  "type": "pas",
+  "title": "Periodic Acid-Schiff (PAS) Stain",
+  "description": "<p>A periodic acid-Schiff (PAS) <a href=\"https://en.wikipedia.org/wiki/Staining\" target=\"_blank\">stain</a> was applied to this biopsy slide. In this stain certain areas of the kidney are stained purple, and the staining allows pathologists to get a good understanding of the amount and thickness of certain cells.</p>"
+}
+{
+  "_id": {
+    "$oid": "5c05744a0056482794321e5e"
+  },
+  "type": "silver",
+  "title": "Silver Methenamine Stain",
+  "description": "<p>A silver methenamine <a href=\"https://en.wikipedia.org/wiki/Staining\" target=\"_blank\">stain</a>, sometimes called a Jones' stain, was applied to this biopsy slide. This stain is commonly used in analyzing kidney diseases because it makes it easy to see an important part of the kidney called the <a href=\"https://en.wikipedia.org/wiki/Glomerular_basement_membrane\" target=\"_blank\">glomerular basement membrane.</a></p>"
+}
+{
+  "_id": {
+    "$oid": "5c05744a0056482794321e5f"
+  },
+  "type": "tri",
+  "title": "Trichrome Stain",
+  "description": "<p>A Masson’s trichrome <a href=\"https://en.wikipedia.org/wiki/Staining\" target=\"_blank\">stain</a> was applied to this biopsy slide. It is called a trichrome stain because it typically shows kidney features in three different colors.</p><p>This stain is very helpful for detecting scarring (also called fibrosis), among other things. Scarring shows up as a blue color on the images.</p>"
+}
