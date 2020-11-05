@@ -12,3 +12,4 @@ build
 .oracle_jre_usage
 .classpath
 .settings
+**/node_modules
