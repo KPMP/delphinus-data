@@ -24,7 +24,8 @@ MongoClient.connect(url, function(err, client) {
     
 
     for(i=0; i< packageIds.length; i++) {
-        packageCollection.findOne({ _id: packageIds[i] }, function(err, document) {
+	let packageId = packageIds[i]
+        packageCollection.findOne({ _id: packageId }, function(err, document) {
             assert.strictEqual(null, err);
 
             let updateCommands = '#/bin/sh\n';
@@ -41,7 +42,7 @@ MongoClient.connect(url, function(err, client) {
                 updateCommands = updateCommands.concat('\n', './run-wsi-worker.sh ' + kpmpId + ' ' + fileName + ' ' + fileInfo._id + ' ' + stainType ); 
             });
 
-            fs.writeFile('dprUpdate.sh', updateCommands, { flag: 'a'}, function(err) {
+            fs.writeFile('dprUpdate_' + packageId + '.sh', updateCommands, { flag: 'a'}, function(err) {
                 if (err) {
                     return console.log(err);
                 }
