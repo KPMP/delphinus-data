@@ -12,6 +12,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.kpmp.logging.LoggingService;
+import org.kpmp.slides.overlay.OverlayBuilder;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -23,12 +24,14 @@ public class SlideControllerTest {
 	private SlideService slideService;
 	@Mock
 	private LoggingService loggingService;
+	@Mock
+	private OverlayBuilder overlayBuilder;
 	private SlideController controller;
 
 	@Before
 	public void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
-		controller = new SlideController(slideService, loggingService);
+		controller = new SlideController(slideService, loggingService, overlayBuilder);
 	}
 
 	@After

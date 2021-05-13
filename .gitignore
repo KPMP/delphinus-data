@@ -13,3 +13,6 @@ build
 .classpath
 .settings
 **/node_modules
+.vscode
+scripts/dprUpdate*
+*.sln

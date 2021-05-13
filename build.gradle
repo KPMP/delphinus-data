@@ -9,6 +9,7 @@ buildscript {
 
 plugins {
     id 'com.palantir.docker' version '0.22.1'
+    id 'visual-studio'
 }
 
 group = 'kingstonduo'
@@ -44,6 +45,7 @@ dependencies {
 	testCompile("org.mockito:mockito-core")
 	testCompile("org.springframework.boot:spring-boot-starter-test")    
     compile("org.json:json:20190722")
+    compile ('org.jfree:jfreesvg:3.4')
 }
 
 springBoot {
