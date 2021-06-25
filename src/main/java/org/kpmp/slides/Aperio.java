@@ -8,6 +8,8 @@ public class Aperio {
 	private String OriginalHeight;
 
 	private String OriginalWidth;
+
+	private String MPP;
 	
 	public String getOriginalHeight() {
 		return OriginalHeight;
@@ -23,6 +25,15 @@ public class Aperio {
 
 	public void setOriginalWidth(String OriginalWidth) {
 		this.OriginalWidth = OriginalWidth;
+	}
+	
+
+	public String getMPP() {
+		return MPP;
+	}
+
+	public void setMPP(String MPP) {
+		this.MPP = MPP;
 	}
 	
 
