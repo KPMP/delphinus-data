@@ -7,6 +7,7 @@ public class Metadata {
 
 	// @Field("aperio")
 	private Aperio aperio;
+	private OpenSlide openslide;
 
 	public Aperio getAperio() {
 		return aperio;
@@ -14,6 +15,14 @@ public class Metadata {
 
 	public void setAperio(Aperio aperio) {
 		this.aperio = aperio;
+	}
+
+	public OpenSlide getOpenSlide() {
+		return openslide;
+	}
+
+	public void setOpenSlide(OpenSlide openslide) {
+		this.openslide = openslide;
 	}
 
 
