@@ -11,6 +11,9 @@ public class Slide {
 	private String id;
 	private String slideName;
 
+	@Field("metadata")
+	private Metadata metadata;
+
 	@Field("stain")
 	private Stain stain;
 
@@ -28,6 +31,14 @@ public class Slide {
 
 	public void setSlideName(String slideName) {
 		this.slideName = slideName;
+	}
+
+	public Metadata getMetadata() {
+		return metadata;
+	}
+
+	public void setMetadata(Metadata metadata) {
+		this.metadata = metadata;
 	}
 
 	public String getId() {
