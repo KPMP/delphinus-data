@@ -1,8 +1,5 @@
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
-const { SlowBuffer } = require('buffer');
-const fs = require('fs');
-const { exit } = require('process');
 
 const url = 'mongodb://localhost:27017';
 const dbName = 'knowledgeEnvironment';
@@ -81,10 +78,11 @@ const updateSlides = function (db, callback) {
     var patientCollection = db.collection('patients');
 
     patientCollection.find({}).toArray( function(err, documents) {
-        assert.strictEqual(null, err);
         let asyncWrapper = new Promise((resolve, reject) => {
+            assert.strictEqual(null, err);
+            let promises = [];
 
-            documents.forEach(function(document, index, array) {
+            documents.forEach(async function(document, index, array) {
                 
                 document.slides.forEach(function(slide, index, array) {
                     let metadata = slide.metadata;
@@ -94,12 +92,20 @@ const updateSlides = function (db, callback) {
                     slide['metadata'] = metadata;
                     
                 });
-                patientCollection.update({_id: document._id}, document);
+                promises.push(patientCollection.replaceOne({_id: document._id}, document));
+                
             });
-            resolve();
+            // checking to see that each promise created by replace above is complete
+            Promise.all(promises).then(() => {
+                resolve();
+            }).catch((error) => {
+                console.log(error)
+            })
         });
         asyncWrapper.then(() => {
             callback();
+        }).catch((error) => {
+            console.log("ERROR: " + error);
         });
     });    
 }
@@ -114,6 +120,5 @@ MongoClient.connect(url, function(err, client) {
         client.close();
         process.exit(0)
     });
-
 });
 
