@@ -7,26 +7,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "patients")
 public class Metadata {
 
-	private Aperio aperio;
-	private OpenSlide openslide;
 	private List<Overlay> overlay;
 	private List<String> overlayLabel;
-
-	public Aperio getAperio() {
-		return aperio;
-	}
-
-	public void setAperio(Aperio aperio) {
-		this.aperio = aperio;
-	}
-
-	public OpenSlide getOpenSlide() {
-		return openslide;
-	}
-
-	public void setOpenSlide(OpenSlide openslide) {
-		this.openslide = openslide;
-	}
 
 	public List<Overlay> getOverlay() {
 		return overlay;

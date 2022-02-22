@@ -24,24 +24,6 @@ public class MetadataTest {
 	}
 
 	@Test
-	public void testSetAperio() {
-		Aperio aperio = new Aperio();
-
-		metadata.setAperio(aperio);
-
-		assertEquals(aperio, metadata.getAperio());
-	}
-
-	@Test
-	public void testSetOpenSlide() {
-		OpenSlide openSlide = new OpenSlide();
-
-		metadata.setOpenSlide(openSlide);
-
-		assertEquals(openSlide, metadata.getOpenSlide());
-	}
-
-	@Test
 	public void testSetOverlay() {
 		Overlay overlay = new Overlay();
 		List<Overlay> expected = Arrays.asList(overlay);
