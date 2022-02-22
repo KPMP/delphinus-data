@@ -1,4 +1,9 @@
-FROM openjdk:8-jdk-alpine
+FROM alpine
+  
+RUN apk update && \
+    apk upgrade
+RUN apk add openjdk8
+
 VOLUME /tmp
 ARG DEPENDENCY=target/dependency
 
