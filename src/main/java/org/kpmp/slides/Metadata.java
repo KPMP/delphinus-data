@@ -1,29 +1,29 @@
 package org.kpmp.slides;
 
+import java.util.List;
+
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "patients")
 public class Metadata {
 
-	// @Field("aperio")
-	private Aperio aperio;
-	private OpenSlide openslide;
+	private List<Overlay> overlay;
+	private List<String> overlayLabel;
 
-	public Aperio getAperio() {
-		return aperio;
+	public List<Overlay> getOverlay() {
+		return overlay;
 	}
 
-	public void setAperio(Aperio aperio) {
-		this.aperio = aperio;
+	public void setOverlay(List<Overlay> overlay) {
+		this.overlay = overlay;
 	}
 
-	public OpenSlide getOpenSlide() {
-		return openslide;
+	public List<String> getOverlayLabel() {
+		return overlayLabel;
 	}
 
-	public void setOpenSlide(OpenSlide openslide) {
-		this.openslide = openslide;
+	public void setOverlayLabel(List<String> overlayLabel) {
+		this.overlayLabel = overlayLabel;
 	}
-
 
 }
