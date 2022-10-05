@@ -3,7 +3,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.7.0")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.7.4")
     }
 }
 
@@ -22,7 +22,7 @@ apply plugin: 'com.palantir.docker'
 
 jar {
     baseName = 'delphinus-data'
-    version =  '1.4'
+    version =  '1.5'
 }
 
 repositories {
@@ -41,10 +41,10 @@ processResources {
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
-	testImplementation("org.mockito:mockito-core")
+	testImplementation("org.mockito:mockito-core:4.8.0")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")    
-    implementation("org.json:json:20190722")
-    testImplementation 'junit:junit:4.12'
+    implementation("org.json:json:20220924")
+    testImplementation 'junit:junit:4.13.2'
 }
 
 springBoot {
