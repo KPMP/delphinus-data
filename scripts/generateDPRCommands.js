@@ -14,7 +14,7 @@ let packageIds = process.argv.slice(2);
 
 // Give usage command if no packageIds provided
 
-MongoClient.connect(url, function(err, client) {
+MongoClient.connect(url, {useUnifiedTopology: true}, function(err, client) {
     assert.strictEqual(null, err);
     console.log("successfully connected to server");
 
