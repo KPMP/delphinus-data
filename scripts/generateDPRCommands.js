@@ -14,8 +14,10 @@ let packageIds = process.argv.slice(2);
 
 // Give usage command if no packageIds provided
 
-MongoClient.connect(url, function(err, client) {
-    assert.strictEqual(null, err);
+generate_scripts();
+
+async function generate_scripts() {
+    const client = await MongoClient.connect(url, {useUnifiedTopology: true});
     console.log("successfully connected to server");
 
     const db = client.db(dbName);
@@ -25,8 +27,7 @@ MongoClient.connect(url, function(err, client) {
 
     for(i=0; i< packageIds.length; i++) {
 	let packageId = packageIds[i]
-        packageCollection.findOne({ _id: packageId }, function(err, document) {
-            assert.strictEqual(null, err);
+        const document = await packageCollection.findOne({ _id: packageId });
 
             let updateCommands = '#/bin/sh\n';
             let kpmpId = document.subjectId;
@@ -48,9 +49,8 @@ MongoClient.connect(url, function(err, client) {
                 }
                 
             });
-        });    
         
         }
         client.close();
-});
+}
 
