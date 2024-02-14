@@ -57,8 +57,17 @@ task unpack(type: Copy) {
     into("build/dependency")
 }
 
+def getTagInfo() {
+  if (project.hasProperty('tag')) {
+    def tagValue = project.property('tag')
+    return tagValue
+  } else {
+      return "latest"
+    }
+}
+
 docker {
-    name "${project.group}/${jar.baseName}"
+    name "${project.group}/${jar.baseName}:" + getTagInfo()
     copySpec.from(tasks.unpack.outputs).into("dependency")
     buildArgs(['DEPENDENCY': "dependency"])
 }
