@@ -23,14 +23,26 @@ async function generate_scripts() {
     const db = client.db(dbName);
     var packageCollection = db.collection('packages');
 
-    
-
     for(i=0; i< packageIds.length; i++) {
 	let packageId = packageIds[i]
         const document = await packageCollection.findOne({ _id: packageId });
 
             let updateCommands = '#/bin/sh\n';
             let kpmpId = document.subjectId;
+            let packageTypeAbbreviation = "";
+            switch (document.packageType) {
+                case "Electron Microscopy Imaging":
+                    packageTypeAbbreviation = "EM";
+                    break;
+                case "Immunofluorescence Imaging": 
+                    packageTypeAbbreviation = "IF";
+                    break;
+                case "Whole Slide Images": 
+                    packageTypeAbbreviation = "LM";
+                    break;
+                default:
+                    break;
+            }
 
             document.files.forEach(fileInfo => {
                 let fileName = fileInfo.fileName.replace(/\.svs/g, '');
@@ -40,7 +52,7 @@ async function generate_scripts() {
                         stainType = slideTypeMap[key];
                     } 
                 }
-                updateCommands = updateCommands.concat('\n', './run-wsi-worker.sh ' + kpmpId + ' ' + fileName + ' ' + fileInfo._id + ' ' + stainType ); 
+                updateCommands = updateCommands.concat('\n', './run-wsi-worker.sh ' + kpmpId + ' ' + fileName + ' ' + fileInfo._id + ' ' + stainType + ' ' + packageTypeAbbreviation ); 
             });
 
             fs.writeFile('dprUpdate_' + packageId + '.sh', updateCommands, { flag: 'a'}, function(err) {
