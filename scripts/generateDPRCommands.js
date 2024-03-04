@@ -52,7 +52,7 @@ async function generate_scripts() {
                         stainType = slideTypeMap[key];
                     } 
                 }
-                updateCommands = updateCommands.concat('\n', './run-wsi-worker.sh ' + kpmpId + ' ' + fileName + ' ' + fileInfo._id + ' ' + stainType + ' ' + packageTypeAbbreviation ); 
+                updateCommands = updateCommands.concat('\n', './run-wsi-worker.sh ' + kpmpId + ' ' + fileName + ' ' + fileInfo._id + ' ' + packageTypeAbbreviation + ' ' + stainType ); 
             });
 
             fs.writeFile('dprUpdate_' + packageId + '.sh', updateCommands, { flag: 'a'}, function(err) {
