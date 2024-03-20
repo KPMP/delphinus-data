@@ -5,6 +5,8 @@ import static org.mockito.Mockito.mock;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.After;
 import org.junit.Before;
@@ -41,10 +43,12 @@ public class ParticipantTest extends Participant {
 	@Test
 	public void testSetSlides() {
 		List<Slide> slides = Arrays.asList(mock(Slide.class), mock(Slide.class));
+		Map<String, List<Slide>> slideMap = new HashMap<>();
+		slideMap.put("(LM) Light Microscopy", slides);
 
-		participant.setSlides(slides);
+		participant.setSlides(slideMap);
 
-		assertEquals(slides, participant.getSlides());
+		assertEquals(slideMap, participant.getSlides());
 	}
 
 }

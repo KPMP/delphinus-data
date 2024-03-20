@@ -11,6 +11,9 @@ public class Slide {
 	private String id;
 	private String slideName;
 
+	@Field("slideType")
+	private String slideType;
+
 	@Field("metadata")
 	private Metadata metadata;
 
@@ -47,6 +50,14 @@ public class Slide {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getSlideType() {
+		return slideType;
+	}
+
+	public void setSlideType(String slideType) {
+		this.slideType = slideType;
 	}
 
 }

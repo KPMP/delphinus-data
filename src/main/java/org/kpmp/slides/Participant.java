@@ -5,6 +5,8 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 @Document(collection = "patients")
 public class Participant {
@@ -16,6 +18,24 @@ public class Participant {
 	@Field("slides")
 	List<Slide> slides = new ArrayList<>();
 
+	List<Slide> slideList = new ArrayList<>();
+
+	private Map<String, List<Slide>> slideMap = new HashMap<>();
+
+	public Map<String, List<Slide>> getSlides() {
+
+		for (Slide slide : this.slides) {
+			List<Slide> newSlideList = new ArrayList<>();
+			String slideType = slide.getSlideType();
+			if (slideMap.containsKey(slideType)) {
+				newSlideList = slideMap.get(slideType);
+			}
+			newSlideList.add(slide);
+			slideMap.put(slideType, newSlideList);
+		}
+		return slideMap;
+	}
+
 	public String getKpmpId() {
 		return kpmpId;
 	}
@@ -24,12 +44,9 @@ public class Participant {
 		this.kpmpId = kpmpId;
 	}
 
-	public List<Slide> getSlides() {
-		return slides;
-	}
 
-	public void setSlides(List<Slide> slides) {
-		this.slides = slides;
+	public void setSlides(Map<String, List<Slide>> slides) {
+		this.slideMap = slides;
 	}
 
 	public String getLabel() {

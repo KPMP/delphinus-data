@@ -1,6 +1,7 @@
 package org.kpmp.slides;
 
 import java.util.List;
+import java.util.Map;
 
 import org.kpmp.logging.LoggingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class SlideController {
 	}
 
 	@RequestMapping(value = "/v1/slides/{kpmpId}", method = RequestMethod.GET)
-	public @ResponseBody List<Slide> getSlidesForParticipant(@PathVariable String kpmpId, HttpServletRequest request) {
+	public @ResponseBody Map<String, List<Slide>> getSlidesForParticipant(@PathVariable String kpmpId, HttpServletRequest request) {
 		logger.logInfoMessage(this.getClass(),"Getting slides for participant " + kpmpId, request);
 		return slideService.getSlidesForParticipant(kpmpId);
 	}
