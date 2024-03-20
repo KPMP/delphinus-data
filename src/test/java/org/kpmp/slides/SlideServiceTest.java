@@ -7,6 +7,8 @@ import static org.mockito.Mockito.when;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.After;
 import org.junit.Before;
@@ -35,21 +37,27 @@ public class SlideServiceTest {
 	public void testGetSlidesForParticipant() {
 		Participant participant = mock(Participant.class);
 		List<Slide> slides = Arrays.asList(mock(Slide.class));
-		when(participant.getSlides()).thenReturn(slides);
+		List<Slide> slides2 = Arrays.asList(mock(Slide.class));
+
+		Map<String, List<Slide>> slideMap = new HashMap<>();
+		slideMap.put("(LM) Light Microscopy", slides);
+		slideMap.put("(EM) Electron Microscopy", slides2);
+
+		when(participant.getSlides()).thenReturn(slideMap);
 		when(participantRepository.findByKpmpId("345")).thenReturn(participant);
 
-		List<Slide> result = service.getSlidesForParticipant("345");
+		Map<String, List<Slide>> result = service.getSlidesForParticipant("345");
 
-		assertEquals(slides, result);
+		assertEquals(slideMap, result);
 	}
 
 	@Test
 	public void testGetSlidesForParticipant_whenNoSlides() {
 		when(participantRepository.findByKpmpId("345")).thenReturn(null);
 
-		List<Slide> result = service.getSlidesForParticipant("345");
+		Map<String, List<Slide>> result = service.getSlidesForParticipant("345");
 
-		assertEquals(Collections.emptyList(), result);
+		assertEquals(Collections.emptyMap(), result);
 	}
 
 	@Test

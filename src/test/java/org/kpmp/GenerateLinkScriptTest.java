@@ -8,6 +8,7 @@ import org.kpmp.slides.Slide;
 import org.kpmp.slides.SlideService;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.kpmp.logging.LoggingService;
 
 import static org.junit.Assert.assertEquals;
 
@@ -15,12 +16,14 @@ public class GenerateLinkScriptTest {
 
     @Mock
     private ParticipantRepository participantRepository;
+	@Mock
+	private LoggingService loggingService;
     private GenerateLinkScript generateLinkScript;
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        generateLinkScript = new GenerateLinkScript(participantRepository);
+        generateLinkScript = new GenerateLinkScript(participantRepository, loggingService);
     }
 
     @After

@@ -7,6 +7,8 @@ import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
 import org.junit.After;
 import org.junit.Before;
@@ -39,11 +41,13 @@ public class SlideControllerTest {
 	@Test
 	public void testGetSlidesForParticipant() {
 		List<Slide> slides = Arrays.asList(mock(Slide.class));
-		when(slideService.getSlidesForParticipant("444")).thenReturn(slides);
+		Map<String, List<Slide>> slideMap = new HashMap<>();
+		slideMap.put("(LM) Light Microscopy", slides);
+		when(slideService.getSlidesForParticipant("444")).thenReturn(slideMap);
 		HttpServletRequest request = mock(HttpServletRequest.class);
-		List<Slide> result = controller.getSlidesForParticipant("444", request);
+		Map<String, List<Slide>> result = controller.getSlidesForParticipant("444", request);
 		verify(loggingService).logInfoMessage(controller.getClass(), "Getting slides for participant 444", request);
-		assertEquals(slides, result);
+		assertEquals(slideMap, result);
 	}
 
 	@Test
