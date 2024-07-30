@@ -20,6 +20,9 @@ public class Slide {
 	@Field("stain")
 	private Stain stain;
 
+	@Field("removed")
+	private boolean removed;
+
 	public Stain getStain() {
 		return stain;
 	}
@@ -58,6 +61,14 @@ public class Slide {
 
 	public void setSlideType(String slideType) {
 		this.slideType = slideType;
+	}
+
+	public boolean getRemoved() {
+		return removed;
+	}
+
+	public void setRemoved(boolean removed) {
+		this.removed = removed;
 	}
 
 }
