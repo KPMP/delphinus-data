@@ -6,7 +6,7 @@ const fs = require('fs');
 const url = 'mongodb://localhost:27017';
 const dbName = 'dataLake';
 const slideTypeMap = { 'PAS':'pas', 'FRZ': 'frz', 'HE': 'he', 'SIL': 'silver', 
-    'TOL': 'tol', 'TRI': 'tri', 'CR': 'cr', 'IHC': 'ihc'}
+    'TOL': 'tol', 'TRI': 'tri', 'CR': 'cr', 'IHC': 'ihc', 'IF-ISH': 'if-ish'}
 
 let dprCommands = [];
 
