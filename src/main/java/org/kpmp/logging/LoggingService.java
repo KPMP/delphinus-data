@@ -1,6 +1,6 @@
 package org.kpmp.logging;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 import org.kpmp.shibboleth.ShibbolethUser;
 import org.kpmp.shibboleth.ShibbolethUserService;

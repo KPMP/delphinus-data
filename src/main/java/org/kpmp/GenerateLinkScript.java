@@ -10,12 +10,10 @@ import org.springframework.boot.WebApplicationType;
 import org.springframework.context.annotation.ComponentScan;
 import org.kpmp.logging.LoggingService;
 
-import javax.servlet.http.Part;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.text.MessageFormat;
 import java.util.List;
-import java.util.Map;
 
 @ComponentScan(basePackages = { "org.kpmp" })
 public class GenerateLinkScript implements CommandLineRunner {

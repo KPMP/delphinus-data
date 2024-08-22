@@ -1,16 +1,16 @@
 package org.kpmp.shibboleth;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.io.UnsupportedEncodingException;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -20,13 +20,13 @@ public class ShibbolethUserServiceTest {
 	@Mock
 	private UTF8Encoder utf8Encoder;
 
-	@Before
+	@BeforeEach
 	public void setUp() throws Exception {
-		MockitoAnnotations.initMocks(this);
+		MockitoAnnotations.openMocks(this);
 		shibbolethUserService = new ShibbolethUserService(utf8Encoder);
 	}
 
-	@After
+	@AfterEach
 	public void tearDown() throws Exception {
 		shibbolethUserService = null;
 	}

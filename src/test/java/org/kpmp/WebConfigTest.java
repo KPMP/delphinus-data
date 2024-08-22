@@ -4,9 +4,9 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.web.servlet.config.annotation.CorsRegistration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
@@ -14,12 +14,12 @@ public class WebConfigTest {
 
 	private WebConfig config;
 
-	@Before
+	@BeforeEach
 	public void setUp() throws Exception {
 		config = new WebConfig();
 	}
 
-	@After
+	@AfterEach
 	public void tearDown() throws Exception {
 		config = null;
 	}

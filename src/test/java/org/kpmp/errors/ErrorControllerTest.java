@@ -3,11 +3,12 @@ package org.kpmp.errors;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-import javax.servlet.http.HttpServletRequest;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import jakarta.servlet.http.HttpServletRequest;
+
 import org.kpmp.logging.LoggingService;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -18,13 +19,13 @@ public class ErrorControllerTest {
 	private LoggingService logger;
 	private ErrorController controller;
 
-	@Before
+	@BeforeEach
 	public void setUp() throws Exception {
-		MockitoAnnotations.initMocks(this);
+		MockitoAnnotations.openMocks(this);
 		controller = new ErrorController(logger);
 	}
 
-	@After
+	@AfterEach
 	public void tearDown() throws Exception {
 	}
 
