@@ -2,7 +2,6 @@ package org.kpmp.slides;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
