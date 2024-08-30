@@ -2,7 +2,7 @@
 
 ## Release 1.4 [unreleased]
 Brief summary of what's in this release:
-
+Upgrade Java to version 21
 
 ### Breaking changes
 
