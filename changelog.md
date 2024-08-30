@@ -2,6 +2,9 @@
 
 ## Release 1.4 [unreleased]
 Brief summary of what's in this release:
+- upgraded Java version
+- introduced git build to push docker image to docker hub
+- grouping of slides based on slide type to ease dispay in front-end
 
 
 ### Breaking changes
