@@ -1,21 +1,22 @@
 package org.kpmp.errors;
 
-import static org.junit.Assert.assertEquals;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class FrontEndErrorTest {
 
 	private FrontEndError error;
 
-	@Before
+	@BeforeEach
 	public void setup() {
 		error = new FrontEndError();
 	}
 
-	@After
+	@AfterEach
 	public void tearDown() {
 		error = null;
 	}

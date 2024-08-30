@@ -1,29 +1,31 @@
 package org.kpmp;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.kpmp.slides.ParticipantRepository;
 import org.kpmp.slides.Slide;
-import org.kpmp.slides.SlideService;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.kpmp.logging.LoggingService;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GenerateLinkScriptTest {
 
     @Mock
     private ParticipantRepository participantRepository;
+	@Mock
+	private LoggingService loggingService;
     private GenerateLinkScript generateLinkScript;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
-        MockitoAnnotations.initMocks(this);
-        generateLinkScript = new GenerateLinkScript(participantRepository);
+        MockitoAnnotations.openMocks(this);
+        generateLinkScript = new GenerateLinkScript(participantRepository, loggingService);
     }
 
-    @After
+    @AfterEach
     public void tearDown() throws Exception {
         generateLinkScript = null;
     }

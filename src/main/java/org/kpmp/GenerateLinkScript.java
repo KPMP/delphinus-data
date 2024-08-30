@@ -8,8 +8,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.context.annotation.ComponentScan;
+import org.kpmp.logging.LoggingService;
 
-import javax.servlet.http.Part;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.text.MessageFormat;
@@ -18,6 +18,7 @@ import java.util.List;
 @ComponentScan(basePackages = { "org.kpmp" })
 public class GenerateLinkScript implements CommandLineRunner {
 
+	private LoggingService logger;
     private ParticipantRepository participantRepository;
     private static final String HEADER = "#!/bin/bash\n" +
             "####\n" +
@@ -34,8 +35,9 @@ public class GenerateLinkScript implements CommandLineRunner {
             "fi \n";
 
     @Autowired
-    public GenerateLinkScript(ParticipantRepository participantRepository) {
+    public GenerateLinkScript(ParticipantRepository participantRepository, LoggingService logger) {
         this.participantRepository = participantRepository;
+		this.logger = logger;
     }
 
     public static void main(String[] args) {
@@ -50,10 +52,17 @@ public class GenerateLinkScript implements CommandLineRunner {
         FileOutputStream linkScript = new FileOutputStream(new File("link.sh"));
         linkScript.write(HEADER.getBytes());
         for (Participant participant: participantList) {
-            for (Slide slide: participant.getSlides()) {
-                String linkCondition = getLinkConditional(participant.getKpmpId(), slide, "PAS");
-                linkScript.write(linkCondition.getBytes());
-            }
+            participant.getSlides().forEach((slideType, slideList) -> {
+                for (Slide slide : slideList) {
+                    String linkCondition = getLinkConditional(participant.getKpmpId(), slide, "PAS");
+                    try {
+                        linkScript.write(linkCondition.getBytes());
+                    }
+                    catch(Exception e) {
+                        logger.logErrorMessage(this.getClass(), e.toString(), null);
+                    }
+                }
+            });
         }
         linkScript.close();
     }

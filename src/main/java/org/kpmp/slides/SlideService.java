@@ -2,6 +2,7 @@ package org.kpmp.slides;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,12 +17,12 @@ public class SlideService {
 		this.participantRepository = participantRepository;
 	}
 
-	public List<Slide> getSlidesForParticipant(String kpmpId) {
+	public Map<String, List<Slide>> getSlidesForParticipant(String kpmpId) {
 		Participant participant = participantRepository.findByKpmpId(kpmpId);
 		if (participant != null) {
 			return participant.getSlides();
 		}
-		return Collections.emptyList();
+		return Collections.emptyMap();
 	}
 
 	public List<Participant> getAllParticipants() {

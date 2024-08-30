@@ -11,11 +11,17 @@ public class Slide {
 	private String id;
 	private String slideName;
 
+	@Field("slideType")
+	private String slideType;
+
 	@Field("metadata")
 	private Metadata metadata;
 
 	@Field("stain")
 	private Stain stain;
+
+	@Field("removed")
+	private boolean removed;
 
 	public Stain getStain() {
 		return stain;
@@ -47,6 +53,22 @@ public class Slide {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getSlideType() {
+		return slideType;
+	}
+
+	public void setSlideType(String slideType) {
+		this.slideType = slideType;
+	}
+
+	public boolean getRemoved() {
+		return removed;
+	}
+
+	public void setRemoved(boolean removed) {
+		this.removed = removed;
 	}
 
 }
