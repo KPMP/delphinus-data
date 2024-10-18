@@ -45,7 +45,7 @@ async function generate_scripts() {
             }
 
             document.files.forEach(fileInfo => {
-                let fileName = fileInfo.fileName.replace(/\.svs/g, '');
+                let fileName = fileInfo.fileName;
                 let stainType = '';
                 for(const key in slideTypeMap) {
                     if (fileName.includes(key)) {
