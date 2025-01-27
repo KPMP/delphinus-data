@@ -14,4 +14,7 @@ public interface ParticipantRepository extends MongoRepository<Participant, Stri
 	@Query(fields = "{ 'kpmpId' : 1, 'label': 1 }")
 	public List<Participant> findByOrderByKpmpIdAsc();
 
+    @Query(value = "{ 'kpmp_id': ?0, 'slides.slideName': ?1 }", fields = "{ 'slides.$': 1 }")
+    Participant findSlideByKpmpIdAndSlideName(String kpmpId, String slideName);
+
 }

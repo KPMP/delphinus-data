@@ -42,12 +42,4 @@ public class SlideTest {
 		assertEquals("54354", slide.getId());
 	}
 
-	@Test
-	public void testSetMetadata() {
-		Metadata metadata = new Metadata();
-		slide.setMetadata(metadata);
-
-		assertEquals(metadata, slide.getMetadata());
-	}
-
 }
