@@ -4,6 +4,8 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Document(collection = "patients")
 public class Slide {
 
@@ -15,6 +17,7 @@ public class Slide {
 	private String slideType;
 
 	@Field("metadata")
+    @JsonIgnore
 	private Metadata metadata;
 
 	@Field("stain")
