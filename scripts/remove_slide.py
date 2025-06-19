@@ -74,7 +74,6 @@ for doc in found_docs:
     for slide in slides:
         if slide.get("slideName") == slide_name:
             slide_id = slide.get("_id")
-            print(f"Found slide: {slide}")
             if kpmp_id and slide_id:
                 remove_links(slide_id)
                 remove_if_block_from_linksh(slide_id, link_sh_path)
