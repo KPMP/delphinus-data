@@ -29,7 +29,7 @@ When the script is executed, it makes a connection to the local MongoDB database
 Must have python 3 installed and the pymongo dependency installed. This can be installed using the requirements.txt file in this directory. It can be installed like this `pip3 install -r requirements.txt` 
 
 ## How to run this script
-Make sure you have the name of the slide you want to remove and a tunnel to the database open if you are running locally.
+Make sure you have the name of the slide you want to remove
 
 ## Example 
 `python3 remove_slide.py <slide_name>`
