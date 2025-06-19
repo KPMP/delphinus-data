@@ -19,3 +19,19 @@ Make sure you have the name of the package containing all of the slides you want
 
 ## Example
 ``` node generateDPRCommands.js 8712fa8e833798924c5c6205acdcd2d0```
+
+# remove_slide.py
+
+## How does this work?
+When the script is executed, it makes a connection to the local MongoDB database. Then it searches the database for a matching slide and will remove the slide from the database. Then the script will edit a link.sh file and remove the if block associated with the slide you are removing. Then the script will remove any symbolic links that are linked to the slide that is being removed. This will completely remove the slide from the DPR and the only way to get the slide back is to run a slide processing script (see above).
+
+## Prerequisites
+Must have python 3 installed and the pymongo dependency installed. This can be installed using the requirements.txt file in this directory. It can be installed like this `pip3 install -r requirements.txt` 
+
+## How to run this script
+Make sure you have the name of the slide you want to remove and a tunnel to the database open if you are running locally.
+
+## Example 
+`python3 remove_slide.py <slide_name>`
+
+`python3 remove_slide.py S-1234-56789_SIL_2of2`
