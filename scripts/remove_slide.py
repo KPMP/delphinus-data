@@ -2,15 +2,6 @@ import sys
 from pymongo import MongoClient
 import os
 
-if len(sys.argv) < 2:
-    print("Usage: python removeSlide.py <slideName>")
-    sys.exit(1)
-
-slide_name = sys.argv[1]
-uri = "mongodb://localhost:27017"
-db_name = "knowledgeEnvironment"
-collection_name = "patients"
-link_sh_path = "/data/deepZoomImages/link.sh"
 
 def remove_links(slide_id):
     targets = [
@@ -60,6 +51,17 @@ def remove_if_block_from_linksh(slide_id, link_sh_path):
     with open(link_sh_path, "w") as f:
         f.writelines(new_lines)
     print(f"Removed if block containing slide id '{slide_id}' from {link_sh_path}")
+    
+
+if len(sys.argv) < 2:
+    print("Usage: python removeSlide.py <slideName>")
+    sys.exit(1)
+
+slide_name = sys.argv[1]
+uri = "mongodb://localhost:27017"
+db_name = "knowledgeEnvironment"
+collection_name = "patients"
+link_sh_path = "/data/deepZoomImages/link.sh"
 
 client = MongoClient(uri)
 db = client[db_name]
@@ -68,18 +70,23 @@ collection = db[collection_name]
 query = {"slides.slideName": slide_name}
 found_docs = list(collection.find(query))
 
-for doc in found_docs:
-    kpmp_id = doc.get("kpmp_id")
-    slides = doc.get("slides", [])
-    for slide in slides:
-        if slide.get("slideName") == slide_name:
-            slide_id = slide.get("_id")
-            if kpmp_id and slide_id:
-                remove_links(slide_id)
-                remove_if_block_from_linksh(slide_id, link_sh_path)
+if len(found_docs) == 1:
+    for doc in found_docs:
+        kpmp_id = doc.get("kpmp_id")
+        slides = doc.get("slides", [])
+        for slide in slides:
+            if slide.get("slideName") == slide_name:
+                slide_id = slide.get("_id")
+                if kpmp_id and slide_id:
+                    remove_links(slide_id)
+                    remove_if_block_from_linksh(slide_id, link_sh_path)
 
-update = {"$pull": {"slides": {"slideName": slide_name}}}
-result = collection.update_many(query, update)
-print(f"\nRemoved slide '{slide_name}' from {result.modified_count} document(s).")
-
+                    update = {"$pull": {"slides": {"slideName": slide_name}}}
+                    result = collection.update_many(query, update)
+                    print(f"\nRemoved slide '{slide_name}' from {result.modified_count} document(s).")
+elif len(found_docs) > 1:
+    print(f"Error: Found multiple documents with slide name '{slide_name}'.")
+else:
+    print(f"No documents found with slide name '{slide_name}'.")
+    
 client.close()
