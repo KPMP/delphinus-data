@@ -104,7 +104,6 @@ class Main:
         client, collection = self.create_connection()
         query = {"kpmp_id": participant_id}
         found_docs = list(collection.find(query))
-        print(found_docs)
         if len(found_docs) == 1:
             for doc in found_docs:
                     slides = doc.get("slides", [])
