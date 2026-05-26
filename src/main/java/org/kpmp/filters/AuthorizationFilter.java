@@ -37,7 +37,7 @@ public class AuthorizationFilter implements Filter {
 	private static final String GROUPS_KEY = "groups";
 	private static final String USER_DOES_NOT_EXIST = "User does not exist in User Portal: ";
 	private static final String CLIENT_ID_PROPERTY = "CLIENT_ID";
-	private static final String COOKIE_NAME = "shibid";
+	private static final String COOKIE_NAME = "shibId";
 	private static final int SECONDS_IN_MINUTE = 60;
 	private static final int MINUTES_IN_HOUR = 60;
 	private static final int SESSION_TIMEOUT_HOURS = 8;
