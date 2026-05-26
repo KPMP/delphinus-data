@@ -159,7 +159,7 @@ public class AuthorizationFilter implements Filter {
 		HttpSession existingSession = request.getSession(false);
 		if (existingSession != null) {
 			for (Cookie cookie : cookies) {
-				if (cookie.getName().equals("shibId")) {
+				if (COOKIE_NAME.equals(cookie.getName())) {
 					if (cookie.getValue().equals(shibId)) {
 						return true;
 					} else {
