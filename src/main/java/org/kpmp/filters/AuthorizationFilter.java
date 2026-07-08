@@ -118,7 +118,6 @@ public class AuthorizationFilter implements Filter {
 
 			} catch (HttpClientErrorException e) {
 				int statusCode = e.getStatusCode().value();
-                System.out.println("User auth returned status code: " + statusCode);
 				if (statusCode == HttpStatus.NOT_FOUND.value()) {
 					handleError(USER_DOES_NOT_EXIST + shibId, HttpStatus.NOT_FOUND, request, response);
 				} else if (statusCode != HttpStatus.OK.value()) {
