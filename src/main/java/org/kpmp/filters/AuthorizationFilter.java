@@ -117,7 +117,7 @@ public class AuthorizationFilter implements Filter {
 				}
 
 			} catch (HttpClientErrorException e) {
-				int statusCode = e.getRawStatusCode();
+				int statusCode = e.getStatusCode().value();
 				if (statusCode == HttpStatus.NOT_FOUND.value()) {
 					handleError(USER_DOES_NOT_EXIST + shibId, HttpStatus.NOT_FOUND, request, response);
 				} else if (statusCode != HttpStatus.OK.value()) {

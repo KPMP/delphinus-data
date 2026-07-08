@@ -31,7 +31,7 @@ public class SlideController {
 		return slideService.getSlidesForParticipant(kpmpId);
 	}
 
-	@RequestMapping(value = "/v1/slides", method = RequestMethod.GET)
+	@RequestMapping(value = {"/v1/slides", "/v1/slides/"}, method = RequestMethod.GET)
 	public @ResponseBody List<Participant> getAllParticipants(HttpServletRequest request) {
 		logger.logInfoMessage(this.getClass(),"Getting all participants", request);
 		return slideService.getAllParticipants();
